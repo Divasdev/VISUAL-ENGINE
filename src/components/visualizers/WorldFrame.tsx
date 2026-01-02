@@ -12,8 +12,8 @@ const WorldFrame: FC = () => {
         args={[100, 100]} // Size of the grid
         sectionSize={2} // Size of the major grid lines
         cellSize={1} // Size of the minor grid lines
-        sectionColor="#a0aec0" // Color of major lines
-        cellColor="#4a5568" // Color of minor lines
+        sectionColor="#333333" // Color of major lines
+        cellColor="#222222" // Color of minor lines
         fadeDistance={50} // Distance at which the grid fades out
         fadeStrength={1.5}
         infiniteGrid

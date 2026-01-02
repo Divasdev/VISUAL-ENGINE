@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { InfoTooltip } from "@/components/ui/InfoTooltip";
 
 interface VectorControlsProps {
    onCalculate?: (vector: [number, number, number]) => void;
@@ -70,9 +71,12 @@ export default function VectorControls({ onCalculate }: VectorControlsProps) {
       <div className="flex flex-col gap-6 text-sm">
          {/* Vector Input */}
          <div className="bg-neutral-800 p-4 rounded-lg border border-neutral-700">
-            <h3 className="text-gray-400 mb-2 font-mono uppercase tracking-wider text-xs">
-               Input Vector (v)
-            </h3>
+            <div className="flex items-center mb-1">
+               <h3 className="text-blue-400 font-mono uppercase tracking-wider text-xs">
+                  Input Vector
+               </h3>
+               <InfoTooltip content="Defines the position of the vector tip in 3D space $(x, y, z)$." />
+            </div>
             <div className="flex gap-2">
                {vector.map((val, i) => (
                   <input

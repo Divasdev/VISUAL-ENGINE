@@ -24,8 +24,12 @@ class TransformRequest(BaseModel):
 def root():
     return {"message": "Backend is running"}
 
+import time
+
 @app.post("/api/transform")
 def transform_vector(data: TransformRequest):
+    start_time = time.time()
+    
     # Validate dimensions
     if len(data.vector) != 3 or any(len(row) != 3 for row in data.matrix):
         raise HTTPException(status_code=400, detail="Vector must be length 3 and matrix must be 3x3")
@@ -47,12 +51,16 @@ def transform_vector(data: TransformRequest):
         expr = row.dot(sp.Matrix(data.vector))
         steps.append(f"Row {i+1}: {expr} = {result_np[i]}")
 
+    end_time = time.time()
+    execution_time_ms = (end_time - start_time) * 1000
+
     return {
         "input_vector": data.vector,
         "input_matrix": data.matrix,
         "result": result_np.tolist(),
         "symbolic_form": str(result_sym),
-        "steps": steps
+        "steps": steps,
+        "execution_time_ms": round(execution_time_ms, 2)
     }
 
 if __name__ == "__main__":
