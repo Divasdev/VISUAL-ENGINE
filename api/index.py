@@ -26,6 +26,7 @@ def root():
 
 import time
 
+@app.post("/transform")
 @app.post("/api/transform")
 def transform_vector(data: TransformRequest):
     start_time = time.time()
