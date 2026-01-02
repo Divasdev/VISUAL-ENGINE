@@ -20,7 +20,7 @@ export default function Home() {
 
   const handleTransform = async (matrix: number[][]) => {
     try {
-      const response = await fetch('/api/transform', {
+      const response = await fetch('/transform', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
